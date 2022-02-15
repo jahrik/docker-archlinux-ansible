@@ -5,3 +5,23 @@
 Arch Linux Docker container for Ansible playbook and role testing.
 
 Inspired by [Jeff Geerling](https://www.jeffgeerling.com/)
+
+## Build
+
+    docker build -t docker-archlinux-ansible .
+
+## Example molecule.yml
+
+    ---
+    dependency:
+      name: galaxy
+    driver:
+      name: docker
+    platforms:
+      - name: arch
+        image: jahrik/docker-archlinux-ansible
+        pre_build_image: true
+    provisioner:
+      name: ansible
+    verifier:
+      name: ansible
