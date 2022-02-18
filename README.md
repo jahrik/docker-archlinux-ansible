@@ -4,11 +4,15 @@
 
 Arch Linux Docker container for Ansible playbook and role testing.
 
-Inspired by [Jeff Geerling](https://www.jeffgeerling.com/)
-
 ## Build
 
+The github workflow in this repo will build this image nightly, but if you need to build it locally, you can do so.
+
     docker build -t docker-archlinux-ansible .
+
+## Usage
+
+    docker exec -it jahrik/docker-archlinux-ansible bash
 
 ## Example molecule.yml
 
@@ -25,3 +29,21 @@ Inspired by [Jeff Geerling](https://www.jeffgeerling.com/)
       name: ansible
     verifier:
       name: ansible
+
+Has user "ansible" with password-less sudo access for testing Ansible roles as a non root user. Adjust provisioner in molecule.yml.
+
+    platforms:
+      - name: arch
+        image: jahrik/docker-archlinux-ansible
+        pre_build_image: true
+    provisioner:
+      name: ansible
+      inventory:
+        host_vars:
+          arch:
+            ansible_user: ansible
+
+## Notes
+
+Inspired by [Jeff Geerling](https://www.jeffgeerling.com/)
+I copy pasted his [ubuntu 20.04 container](https://github.com/geerlingguy/docker-ubuntu2004-ansible) and went from there :)
