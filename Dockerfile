@@ -1,8 +1,6 @@
 FROM archlinux/archlinux
 LABEL maintainer="Wes Gill"
 
-ENV PIP_PACKAGES "ansible"
-
 # Install dependencies.
 RUN pacman -Syu --noconfirm \
     && pacman -S --noconfirm \
@@ -11,11 +9,9 @@ RUN pacman -Syu --noconfirm \
       python-pip \
       python-yaml \
       base-devel \
+      ansible \
       sudo \
       git
-
-# Install Ansible via Pip.
-RUN pip3 install $PIP_PACKAGES
 
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
