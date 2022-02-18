@@ -10,7 +10,7 @@ RUN pacman -Syu --noconfirm \
       python-setuptools \
       python-pip \
       python-yaml \
-      build-devel \
+      base-devel \
       sudo \
       git
 
