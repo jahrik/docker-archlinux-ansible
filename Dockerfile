@@ -7,7 +7,6 @@ RUN pacman -Syu --noconfirm \
       python3 \
       python-setuptools \
       python-pip \
-      python-yaml \
       base-devel \
       ansible \
       sudo \
