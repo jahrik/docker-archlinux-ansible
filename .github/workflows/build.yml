@@ -18,8 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+        # fakeroot hangs without ulimit set.
+        # https://github.com/moby/moby/issues/27195
       - name: Test building image.
-        run: docker build -t docker-ansible .
+        run: docker build --ulimit nofile=1024:524288 -t docker-ansible .
 
       - name: Run the built image.
         run: docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro docker-ansible tail -f /dev/null
