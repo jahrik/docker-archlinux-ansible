@@ -29,7 +29,8 @@ USER ${ANSIBLE_USER}
 # Install yay for easy package management.
 RUN git clone https://aur.archlinux.org/yay.git /tmp/yay && \
     cd /tmp/yay && \
-    makepkg --noconfirm -si
+    makepkg --noconfirm -si && \
+    rm -rf /tmp/yay
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 CMD ["/lib/systemd/systemd"]
