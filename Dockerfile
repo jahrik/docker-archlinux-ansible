@@ -12,11 +12,12 @@ RUN pacman -Syu --noconfirm \
   base-devel \
   ansible \
   sudo \
-  git
+  git \
+  && pacman -Scc --noconfirm
 
 # Install Ansible inventory file.
-RUN mkdir -p /etc/ansible
-RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+RUN mkdir -p /etc/ansible \
+  && printf '[local]\nlocalhost ansible_connection=local\n' > /etc/ansible/hosts
 
 # Create ansible user with sudo permissions
 RUN set -xe \
