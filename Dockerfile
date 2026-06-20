@@ -3,6 +3,9 @@ LABEL maintainer="Wes Gill"
 ENV ANSIBLE_USER=ansible
 USER root
 
+# Disable pacman sandbox (required for Docker containers without bwrap support).
+RUN sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf
+
 # Install dependencies.
 RUN pacman -Syu --noconfirm \
   && pacman -S --noconfirm \
