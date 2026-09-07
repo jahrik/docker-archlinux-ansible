@@ -9,8 +9,8 @@ Produces `jahrik/docker-archlinux-ansible` — an Arch Linux Docker image for te
 ## Build & Push
 
 ```bash
-make build   # build locally (requires the --ulimit workaround for fakeroot)
-make push    # push to DockerHub as jahrik/docker-archlinux-ansible:latest
+just build   # build locally (requires the --ulimit workaround for fakeroot)
+just push    # push to DockerHub as jahrik/docker-archlinux-ansible:latest
 ```
 
 The `--ulimit nofile=1024:524288` flag is required — without it, `fakeroot` hangs during `makepkg` ([moby/moby#27195](https://github.com/moby/moby/issues/27195)).
