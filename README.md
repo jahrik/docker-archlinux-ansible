@@ -14,6 +14,10 @@ The github workflow in this repo will build this image nightly, but if you need 
 
     docker exec -it jahrik/docker-archlinux-ansible bash
 
+The image is published for `linux/amd64` only, because the upstream `archlinux/archlinux`
+base has no arm64 build. On Apple Silicon it runs under x86-64 emulation (Rosetta or QEMU in
+Docker Desktop, OrbStack, or a Podman machine with emulation enabled).
+
 ## Example molecule.yml
 
     ---
