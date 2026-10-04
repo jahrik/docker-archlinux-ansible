@@ -19,7 +19,7 @@ The `--ulimit nofile=1024:524288` flag is required — without it, `fakeroot` ha
 
 GitHub Actions runs on every push to `main`, every PR, and nightly (`0 0 * * *`). Pipeline:
 1. Builds the image and verifies `ansible --version` inside a running container.
-2. On `main` only, pushes a multi-arch (`amd64` + `arm64`) image to DockerHub using `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` secrets.
+2. On `main` only, pushes an `amd64`-only image to DockerHub using `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` secrets.
 
 ## Image internals
 

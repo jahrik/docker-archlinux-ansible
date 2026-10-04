@@ -1,6 +1,6 @@
 image := "jahrik/docker-archlinux-ansible"
 tag := "latest"
-platforms := "linux/amd64,linux/arm64"
+platforms := "linux/amd64"
 
 # Build the image locally (fakeroot hangs without a raised nofile ulimit: https://github.com/moby/moby/issues/27195)
 [group('build')]
@@ -17,7 +17,7 @@ push image_name=image image_tag=tag:
 login registry="docker.io" username="" password="":
     echo "{{ password }}" | docker login {{ registry }} -u "{{ username }}" --password-stdin
 
-# Multi-arch build and push (used by CI release job)
+# Build and push (used by CI release job). amd64 only: archlinux/archlinux has no arm64 image
 [group('release')]
 release tags=(image + ":" + tag):
     docker buildx build --ulimit nofile=1024:524288 --platform {{ platforms }} -t {{ tags }} --push .
